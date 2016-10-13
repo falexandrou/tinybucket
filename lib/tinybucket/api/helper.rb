@@ -10,6 +10,7 @@ module Tinybucket
         :BuildStatusHelper,
         :CommitsHelper,
         :CommentsHelper,
+        :DeployKeysHelper,
         :DiffHelper,
         :EmailsHelper,
         :HooksHelper,

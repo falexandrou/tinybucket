@@ -26,6 +26,14 @@ module Tinybucket
 
     def request(method, path, params, parser, options)
       conn = connection(options, parser)
+      # @V1-cleanup => This will keep me awake at nights
+      # Horrible hack - I blame BitBucket for releasing their v2 api
+      # partially and also for bitbucket_rest_api for being such a douchy gem
+      # sadly deploy keys is still in 1.0
+      if path.include?('/deploy-keys')
+        endpoint = conn.url_prefix.to_s.gsub(/\/2\.0/i, '/1.0')
+        conn.url_prefix = URI(endpoint)
+      end
 
       path = (conn.path_prefix + path).gsub(%r{//}, '/') \
         if conn.path_prefix != '/'
@@ -41,6 +49,17 @@ module Tinybucket
         else
           raise ArgumentError, 'unknown http method: ' + method
         end
+      end
+
+      # 1.0 api sadness - i apologized a few lines above
+      # @V1-cleanup
+      if path.match(/\/deploy\-keys$/) && method == :get
+        return Tinybucket::Model::Page.new({
+          pagelen: 10,
+          values: response.body,
+          page: 1,
+          size: response.body.length
+        }, Tinybucket::Model::DeployKey)
       end
 
       response.body

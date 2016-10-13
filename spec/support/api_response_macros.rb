@@ -36,6 +36,37 @@ module ApiResponseMacros
         headers: response_headers)
   end
 
+  # @V1-cleanup - DELETE THIS METHOD
+  def stub_v1_apiresponse(method, path, options = {})
+    response_headers = { content_type: 'application/json' }.merge(options)
+
+    ext =
+      case response_headers[:content_type]
+      when 'plain/text' then; 'txt'
+      else                    'json'
+      end
+
+    stub_request(method, 'https://api.bitbucket.org/1.0' + path)
+      .to_return(
+        status: (options[:status_code] || 200),
+        body: (options[:message] || fixture_json(method, path, ext)),
+        headers: response_headers)
+  end
+
+  # @V1-cleanup - DELETE THIS METHOD
+  def stub_v1_enum_response(method, path)
+    response_headers = { content_type: 'application/json' }
+
+    first_page_json = fixture_json(method, path, 'json')
+
+    # stub for first page
+    stub_request(method, 'https://api.bitbucket.org/1.0' + path)
+      .to_return(
+        status: 200,
+        body: first_page_json,
+        headers: response_headers)
+  end
+
   private
 
   def api_path(path, params = {})

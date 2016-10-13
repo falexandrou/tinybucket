@@ -7,6 +7,7 @@ module Tinybucket
       :Branches,
       :BranchRestrictions,
       :Commits,
+      :DeployKeys,
       :Emails,
       :Forks,
       :Hooks,

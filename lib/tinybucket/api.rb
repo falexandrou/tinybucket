@@ -9,6 +9,7 @@ module Tinybucket
       :BuildStatusApi,
       :CommitsApi,
       :CommentsApi,
+      :DeployKeysApi,
       :DiffApi,
       :EmailsApi,
       :HooksApi,

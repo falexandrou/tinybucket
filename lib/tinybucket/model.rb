@@ -9,6 +9,7 @@ module Tinybucket
       :BuildStatus,
       :Comment,
       :Commit,
+      :DeployKey,
       :Email,
       :ErrorResponse,
       :Hook,
