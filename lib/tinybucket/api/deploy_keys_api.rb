@@ -47,6 +47,8 @@ module Tinybucket
         post_path(
           path_to_post,
           options.merge(
+            accountname: repo_owner,
+            repo_slug: repo_slug,
             key: key,
             label: label
           ),
