@@ -9,6 +9,7 @@ RSpec.describe Tinybucket::Model::Repository do
   let(:request_path) { nil }
   let(:stub_options) { {} }
 
+  let(:key_id) { '1' }
   let(:owner) { 'test_owner' }
   let(:slug)  { 'test_repo' }
   let(:branch) { "master" }
@@ -104,6 +105,22 @@ RSpec.describe Tinybucket::Model::Repository do
     let(:request_path) { "/repositories/#{owner}/#{slug}/refs/branches/#{branch}" }
     subject { model.branch(branch) }
     it { expect(subject).to be_an_instance_of(Tinybucket::Model::Branch) }
+  end
+
+  describe '#deploy_keys' do
+    let(:request_path) { "/repositories/#{owner}/#{slug}/deploy-keys" }
+    # @V1-cleanup
+    before { stub_v1_apiresponse(:get, request_path, stub_options) }
+    subject { model.deploy_keys }
+    it { expect(subject).to be_an_instance_of(Tinybucket::Resource::DeployKeys) }
+  end
+
+  describe '#deploy_key' do
+    let(:request_path) { "/repositories/#{owner}/#{slug}/deploy-keys/#{key_id}" }
+    # @V1-cleanup
+    before { stub_v1_apiresponse(:get, request_path, stub_options) }
+    subject { model.deploy_key(key_id) }
+    it { expect(subject).to be_an_instance_of(Tinybucket::Model::DeployKey) }
   end
 
   describe '#branch_restrictions' do

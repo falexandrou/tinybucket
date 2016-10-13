@@ -125,6 +125,22 @@ module Tinybucket
         branches_resource(options)
       end
 
+      # Get deploy keys for this repository
+      #
+      # @param options [Hash]
+      # @return [Tinybucket::Resource::DeployKeys]
+      def deploy_keys(options = {})
+        deploy_keys_resource(options)
+      end
+
+      # Get a single deploy key on this repository
+      #
+      # @param options [Hash]
+      # @return [Tinybucket::Resource::DeployKeys]
+      def deploy_key(key_id, options = {})
+        deploy_keys_resource.find(key_id, options)
+      end
+
       # Get the specific branch on this repository.
       #
       # @param branch [String]
@@ -182,6 +198,10 @@ module Tinybucket
 
       def commits_resource(options = {})
         Tinybucket::Resource::Commits.new(self, options)
+      end
+
+      def deploy_keys_resource(options = {})
+        Tinybucket::Resource::DeployKeys.new(self, options)
       end
 
       def pull_requests_resource(options = {})
