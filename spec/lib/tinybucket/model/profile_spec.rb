@@ -49,4 +49,11 @@ RSpec.describe Tinybucket::Model::Profile do
     subject { model.repos }
     it { expect(subject).to be_an_instance_of(Tinybucket::Resource::User::Repos) }
   end
+
+  describe 'owners_teams' do
+    let(:request_path) { "/teams" }
+    subject { model.owners_teams }
+    it { expect(subject).to be_an_instance_of(Tinybucket::Resource::User::OwnersTeams) }
+  end
+
 end

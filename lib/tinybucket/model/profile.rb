@@ -59,6 +59,14 @@ module Tinybucket
         Tinybucket::Resource::User::Repos.new(username, options)
       end
 
+      # Get the logged in user's teams
+      #
+      # @param options [Hash]
+      # @return [Tinybucket::Resource::User::OwnersTeams]
+      def owners_teams(options = {})
+        Tinybucket::Resource::User::OwnersTeams.new(username, options)
+      end
+
       private
 
       def user_api

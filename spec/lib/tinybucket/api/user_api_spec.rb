@@ -30,6 +30,15 @@ RSpec.describe Tinybucket::Api::UserApi do
     end
   end
 
+  describe 'owners_teams' do
+    subject { api.owners_teams }
+
+    context 'when with username' do
+      let(:request_path) { "/teams" }
+      it { expect(subject).to be_an_instance_of(Tinybucket::Model::Page) }
+    end
+  end
+
   describe 'emails' do
     subject { api.emails }
     context "when requesting emails" do

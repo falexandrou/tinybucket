@@ -41,6 +41,7 @@ module Tinybucket
         :Base,
         :Followers,
         :Following,
+        :OwnersTeams,
         :Repos
       ].each do |klass_name|
         autoload klass_name

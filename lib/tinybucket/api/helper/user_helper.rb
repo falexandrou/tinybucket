@@ -10,6 +10,10 @@ module Tinybucket
           base_path
         end
 
+        def path_to_owners_teams
+          build_path('/teams')
+        end
+
         def path_to_followers
           build_path(base_path, 'followers')
         end

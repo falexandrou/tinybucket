@@ -1,0 +1,48 @@
+{
+  "pagelen": 10,
+  "values": [
+    {
+      "username": "superteam",
+      "website": null,
+      "display_name": "superteam",
+      "uuid": "{84d6533a-2e7b-4f51-be41-0de977cba332}",
+      "links": {
+        "hooks": {
+          "href": "https://api.bitbucket.org/2.0/teams/superteam/hooks"
+        },
+        "self": {
+          "href": "https://api.bitbucket.org/2.0/teams/superteam"
+        },
+        "repositories": {
+          "href": "https://api.bitbucket.org/2.0/repositories/superteam"
+        },
+        "html": {
+          "href": "https://bitbucket.org/superteam/"
+        },
+        "followers": {
+          "href": "https://api.bitbucket.org/2.0/teams/superteam/followers"
+        },
+        "avatar": {
+          "href": "https://bitbucket.org/account/superteam/avatar/32/"
+        },
+        "members": {
+          "href": "https://api.bitbucket.org/2.0/teams/superteam/members"
+        },
+        "following": {
+          "href": "https://api.bitbucket.org/2.0/teams/superteam/following"
+        },
+        "projects": {
+          "href": "https://api.bitbucket.org/2.0/teams/superteam/projects/"
+        },
+        "snippets": {
+          "href": "https://api.bitbucket.org/2.0/snippets/superteam"
+        }
+      },
+      "created_on": "2016-10-11T11:00:15.249571+00:00",
+      "location": null,
+      "type": "team"
+    }
+  ],
+  "page": 1,
+  "size": 1
+}

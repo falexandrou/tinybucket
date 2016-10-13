@@ -24,6 +24,15 @@ module Tinybucket
         )
       end
 
+      # Send 'Get the user teams' request
+      def owners_teams(options = {})
+        get_path(
+          path_to_owners_teams,
+          options,
+          Tinybucket::Parser::TeamsParser
+        )
+      end
+
       # Send 'GET the list of followers' request
       #
       # @param options [Hash]
