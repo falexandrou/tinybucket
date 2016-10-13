@@ -43,7 +43,7 @@ module Tinybucket
       # @param label [String]
       # @param options [Hash]
       # @return [Tinybucket::Model::DeployKey]
-      def post(key, label = "", options = {})
+      def post(key, label = '', options = {})
         post_path(
           path_to_post,
           options.merge(

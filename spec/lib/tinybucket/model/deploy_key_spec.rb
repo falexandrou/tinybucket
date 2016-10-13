@@ -7,7 +7,7 @@ RSpec.describe Tinybucket::Model::DeployKey do
   let(:model_json) { load_json_fixture('deploy-key') }
 
   let(:request_path) { nil }
-
+  let(:key_id) { "1" }
   let(:owner) { 'test_owner' }
   let(:slug) { 'test_repo' }
 
@@ -24,7 +24,8 @@ RSpec.describe Tinybucket::Model::DeployKey do
   before do
     if request_path
       opts = stub_options.present? ? stub_options : {}
-      stub_apiresponse(request_method, request_path, opts)
+      # @V1-cleanup
+      stub_v1_apiresponse(request_method, request_path, opts)
     end
   end
 
@@ -33,8 +34,16 @@ RSpec.describe Tinybucket::Model::DeployKey do
                   load_json_fixture('deploy-key')
 
   describe 'model can reloadable' do
-    let(:branch) { Tinybucket::Model::DeployKey.new({}) }
-    before { @model = branch }
+    let(:key) { Tinybucket::Model::DeployKey.new({}) }
+    before { @model = key }
     it_behaves_like 'the model is reloadable'
   end
+
+  describe "#delete" do
+    let(:request_method) { :delete }
+    let(:request_path) { "/repositories/#{owner}/#{slug}/deploy-keys/#{key_id}" }
+    subject { model.destroy }
+    it { expect(subject).to be_truthy }
+  end
+
 end

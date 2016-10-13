@@ -17,6 +17,18 @@ module Tinybucket
         end
       end
 
+      # Create a deploy key
+      #
+      # @param key [String]
+      # @param label [String]
+      # @param options [Hash]
+      # @return [Tinybucket::Model::DeployKey]
+      def create(key, label = '', options = {})
+        deploy_keys_api.post(key, label, options).tap do |m|
+          inject_repo_keys(m, @repo.repo_keys)
+        end
+      end
+
       private
 
       def deploy_keys_api

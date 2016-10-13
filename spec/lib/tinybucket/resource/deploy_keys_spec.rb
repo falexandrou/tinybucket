@@ -6,6 +6,13 @@ RSpec.describe Tinybucket::Resource::DeployKeys do
   let(:key_id) { "1" }
   let(:owner) { 'test_owner' }
   let(:slug) { 'test_repo' }
+  let(:key_payload)  do
+    {
+      :key => "ssh-rsa AAAAaaaaabbbcccccddddd1234556 user@computer",
+      :label => "Key label",
+    }
+  end
+
 
   let(:repo) do
     Tinybucket::Model::Repository.new({}).tap do |m|
@@ -20,8 +27,16 @@ RSpec.describe Tinybucket::Resource::DeployKeys do
   describe '#find' do
     let(:request_path) { "/repositories/#{owner}/#{slug}/deploy-keys/#{key_id}" }
     # @V1-cleanup
-    before { stub_v1_enum_response(:get, request_path) }
+    before { stub_v1_apiresponse(:get, request_path) }
     subject { resource.find(key_id) }
+    it { expect(subject).to be_an_instance_of(Tinybucket::Model::DeployKey) }
+  end
+
+  describe '#create' do
+    let(:request_path) { "/repositories/#{owner}/#{slug}/deploy-keys" }
+    # @V1-cleanup
+    before { stub_v1_apiresponse(:post, request_path) }
+    subject { resource.create(key_payload[:key], key_payload[:label]) }
     it { expect(subject).to be_an_instance_of(Tinybucket::Model::DeployKey) }
   end
 
