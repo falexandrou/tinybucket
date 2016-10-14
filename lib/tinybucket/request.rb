@@ -45,7 +45,6 @@ module Tinybucket
           request.url(path, params)
         when :post, :put, :patch
           request.path = path
-          request.headers = {'Content-Type': 'application/json'} if path.include?('/deploy-keys')
           request.body = extract_data_from_params(params) unless params.empty?
         else
           raise ArgumentError, 'unknown http method: ' + method
