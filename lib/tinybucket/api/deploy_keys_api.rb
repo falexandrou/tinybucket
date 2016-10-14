@@ -52,8 +52,7 @@ module Tinybucket
             key: key,
             label: label
           ),
-          Tinybucket::Parser::DeployKeyParser,
-          { headers: { 'Content-Type' => 'application/json' } }
+          Tinybucket::Parser::DeployKeyParser
         )
       end
 
