@@ -66,5 +66,9 @@ RSpec.describe Tinybucket::Model::Team do
       expect(subject).to be_an_instance_of(
         Tinybucket::Resource::Team::Repos)
     end
+
+    it 'iterates the resource' do
+      expect(subject.all? { |e| e.instance_of? Tinybucket::Model::Repository }).to be true
+    end
   end
 end

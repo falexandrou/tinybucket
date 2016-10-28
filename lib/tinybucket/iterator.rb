@@ -49,7 +49,7 @@ module Tinybucket
     end
 
     def next?
-      (@pos.nil? || @values.size == @pos) && @attrs[:next])
+      @pos.nil? || (@values.size == @pos && @attrs[:next])
     end
 
     def load_next
