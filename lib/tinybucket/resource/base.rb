@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Tinybucket
   module Resource
     class Base
@@ -12,6 +14,10 @@ module Tinybucket
         enum.send(method, *args) do |m|
           block_given? ? yield(m) : m
         end
+      end
+
+      def respond_to_missing?(symbol, include_all)
+        enum.respond_to_missing?(symbol, include_all) || super
       end
 
       def create_enumerator(api_client, method, *args, &block)

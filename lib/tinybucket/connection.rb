@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Tinybucket
   module Connection
     DEFAULT_USER_AGENT = 'Tinybucket Ruby Bitbucket REST client'.freeze

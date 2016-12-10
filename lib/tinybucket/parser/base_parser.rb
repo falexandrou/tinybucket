@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Tinybucket
   module Parser
     class BaseParser < FaradayMiddleware::ResponseMiddleware
@@ -10,8 +12,7 @@ module Tinybucket
       end
 
       # override on subclass
-      def convert(_json)
-      end
+      def convert(_json); end
     end
   end
 end
